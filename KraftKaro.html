@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KraftKaro</title>
+  <link rel="stylesheet" href="KraftKaro.css" />
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <!-- Firebase Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+</head>
+<body>
+  <header>
+    <h1><i>KraftKaro</i></h1>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#cart-sidebar">🛒 Cart</a></li>
+        <li><a href="policies.html">Legal Info</a></li>
+        <li><a href="admin.html">Admin</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- 🔹 Product Grid -->
+  <section class="product-grid" id="product-container">
+    <div style="text-align: center; margin-top: 20px;">
+  <input type="text" id="search-bar" placeholder="Search products..." style="padding: 10px; width: 300px; border-radius: 8px; border: 1px solid #ccc;">
+</div>
+
+    <div id="product-container"></div>
+    <!-- Products will be dynamically inserted here -->
+  </section>
+
+  <!-- 🔹 Cart Sidebar -->
+  <div id="cart-sidebar" class="cart-sidebar">
+    <h2>🛒 Cart</h2>
+    <ul id="cart-items"></ul>
+    <p id="total-price">Total: ₹0</p>
+    <button id="checkout">Checkout</button>
+    <button id="close-cart" style="margin-top:10px;">Close</button>
+  </div>
+
+  <!-- 🔹 Contact Form -->
+  <section id="contact">
+    <h2>Get in Touch</h2>
+    <form onsubmit="event.preventDefault(); alert('Thank you for contacting us!');">
+      <div class="form-row">
+        <input type="text" placeholder="Name" required />
+        <input type="email" placeholder="Email" required />
+      </div>
+      <textarea placeholder="Message" required></textarea><br /><br />
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <!-- 🔹 Modal Image View -->
+  <div id="modal" class="modal" style="display: none;">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modal-img" />
+  </div>
+
+  
+
+  <!-- 🔹 EmailJS Init -->
+  <script>
+    (function () {
+      emailjs.init("xH6rIF1K38dkEQJPa");
+    })();
+  </script>
+
+  <!-- 🔹 Modal JS -->
+  <script>
+    function openModal(src) {
+      const modal = document.getElementById("modal");
+      const modalImg = document.getElementById("modal-img");
+      modal.style.display = "block";
+      modalImg.src = src;
+    }
+
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+    }
+  </script>
+  <!-- 🔹 Modal Image View -->
+<div id="modal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="modal-img">
+</div>
+
+
+  <!-- 🔹 Main JS -->
+  <script src="KraftKaro.js"></script>
+</body>
+</html>

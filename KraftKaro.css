@@ -1,0 +1,409 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background-color: #FFF6F1;
+  color: #4A4A4A;
+  padding-bottom: 80px;
+}
+
+/* Header */
+header {
+  background-color: #F7C8E0;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+header h1 {
+  font-size: 2.5rem;
+  color: #4A4A4A;
+}
+
+.nav-links {
+  list-style: none;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #4A4A4A;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #B47B84;
+}
+
+/* Product Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 40px;
+}
+
+.product {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.product:hover {
+  transform: scale(1.02);
+}
+
+.product img {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.product h2 {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  color: #4A4A4A;
+}
+
+.product .price {
+  font-weight: bold;
+  color: #E38F66;
+}
+
+.product button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #C5EBAA;
+  color: #4A4A4A;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.product button:hover {
+  background-color: #A4D18A;
+}
+
+/* Cart Sidebar */
+.cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 300px;
+  height: 100%;
+  background-color: #F7C8E0;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  overflow-y: auto;
+  transition: right 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.cart-sidebar.open {
+  right: 0;
+}
+
+#cart-sidebar h2 {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+#cart-items {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 15px;
+}
+
+#cart-items li {
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+}
+
+#cart-items button {
+  margin: 5px 4px;
+  padding: 5px 10px;
+  background-color: #C5EBAA;
+  color: #4A4A4A;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+#cart-items button:hover {
+  background-color: #A4D18A;
+}
+
+#checkout {
+  padding: 12px 30px;
+  font-size: 1rem;
+  background-color: #C5EBAA;
+  color: #4A4A4A;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#checkout:hover {
+  background-color: #A4D18A;
+}
+
+#total-price {
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #4A4A4A;
+}
+
+#close-cart {
+  margin-top: 10px;
+  background-color: #E38F66;
+}
+
+#close-cart:hover {
+  background-color: #D27B55;
+}
+
+/* Contact Form */
+#contact {
+  background-color: #FFE6E6;
+  padding: 40px;
+  text-align: center;
+}
+
+#contact h2 {
+  margin-bottom: 20px;
+}
+
+#contact form {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+#contact input,
+#contact textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+#contact button {
+  background-color: #F7C8E0;
+  color: #4A4A4A;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#contact button:hover {
+  background-color: #E4AFC7;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 10px;
+}
+
+.modal .close {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  color: white;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  .product h2 {
+    font-size: 1rem;
+  }
+
+  .product-grid {
+    padding: 20px;
+  }
+
+  #contact form {
+    padding: 0 10px;
+  }
+}
+.product-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+}
+.product-img {
+    width: 100%;
+    height: auto;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 10px;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    padding: 20px;
+  }
+
+  .product h2 {
+    font-size: 1rem;
+  }
+
+  .product .price {
+    font-size: 0.9rem;
+  }
+
+  .product button {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+
+  #cart-sidebar {
+    width: 80%;
+  }
+
+  #contact form {
+    width: 100%;
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+
+  .product img {
+    max-height: 150px;
+  }
+
+  #cart-sidebar {
+    width: 100%;
+  }
+
+  .modal-content {
+    max-width: 95%;
+    max-height: 70%;
+  }
+}
+.product-img-wrapper {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.product-img-wrapper img {
+  position:relative
+    width: 100%;
+    height: 100%;
+    overflow:hidden;
+}
+.product-img-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Cover ko contain karo */
+}
+
+
+.sold-out {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    font-weight: bold;
+    z-index: 10;
+}
+
+
