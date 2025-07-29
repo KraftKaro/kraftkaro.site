@@ -177,7 +177,7 @@ function getNextOrderId() {
           emailjs.send("service_v5t31vd", "template_71mxrug", {
             customer_name: fullName,
             email: email,
-            order: itemSummary,
+            order: orderId,
             total: totalCost,
             order_id: orderId
           })
@@ -185,7 +185,7 @@ function getNextOrderId() {
             return emailjs.send("service_v5t31vd", "template_71mxrug", {
               customer_name: "Neha Sinha",
               email: "nehasinha270207@gmail.com",
-              order: itemSummary,
+              order: orderId,
               total: totalCost,
               order_id: orderId
             });
