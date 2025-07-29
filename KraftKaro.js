@@ -91,6 +91,9 @@ document.addEventListener('DOMContentLoaded', () => {
   closeCartBtn.addEventListener("click", () => {
     cartSidebar.classList.remove("open");
   });
+function getNextOrderId() {
+  return Math.floor(Math.random() * 1000000);
+}
 
   checkoutButton.addEventListener('click', async () => {
     if (cart.length === 0) {
@@ -139,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      const rawId = getNextOrderId();
+      const rawId = await getNextOrderId();
       const paddedId = String(rawId).padStart(3, '0');
       const orderId = `#kraft_${paddedId}`;
 
