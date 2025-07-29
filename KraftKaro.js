@@ -152,7 +152,9 @@ function getNextOrderId() {
         currency: "INR",
         name: "KraftKaro",
         description: `Order ${orderId}`,
+
         handler: function (response) {
+          console.log("✅ Payment Successful. Payment ID:", response.razorpay_payment_id);
           const orderData = {
             name: fullName,
             email,
@@ -171,35 +173,38 @@ function getNextOrderId() {
           };
 
           saveOrderToFirebase(orderData);
+console.log("📧 Sending email to Customer...");
+emailjs.send("service_v5t31vd", "template_71mxrug", {
+  customer_name: fullName,
+  email: email,
+  order: orderId,
+  total: totalCost
+})
+.then((res) => {
+  console.log("✅ Customer email sent", res.status, res.text);
+  console.log("📧 Sending email to Owner...");
+  return emailjs.send("service_v5t31vd", "template_71mxrug", {
+    customer_name: "Neha Sinha",
+    email: "nehasinha270207@gmail.com",
+    order: orderId,
+    total: totalCost
+  });
+})
+.then((res2) => {
+  console.log("✅ Owner email sent", res2.status, res2.text);
+  alert("📧 Emails sent & ✅ payment confirmed!");
+  cart = [];
+  totalCost = 0;
+  updateCart();
+  formContainer.remove();
+})
+.catch(err => {
+  console.error("❌ EmailJS Error:", err);
+  alert("Payment done, but email sending failed.");
+});
 
-          const itemSummary = cart.map(item => `${item.name} x${item.quantity} (${orderId})`).join(', ');
+         
 
-          emailjs.send("service_v5t31vd", "template_71mxrug", {
-            customer_name: fullName,
-            email: email,
-            order: orderId,
-            total: totalCost,
-            order_id: orderId
-          })
-          .then(() => {
-            return emailjs.send("service_v5t31vd", "template_71mxrug", {
-              customer_name: "Neha Sinha",
-              email: "nehasinha270207@gmail.com",
-              order: orderId,
-              total: totalCost,
-              order_id: orderId
-            });
-          })
-          .then(() => {
-            alert("📧 Emails sent & ✅ payment confirmed!");
-            cart = [];
-            totalCost = 0;
-            updateCart();
-            formContainer.remove();
-          })
-          .catch(err => {
-            console.error("Email error:", err);
-          });
         },
         prefill: {
           name: fullName,
@@ -335,3 +340,14 @@ window.addEventListener('click', function(event) {
     modal.style.display = "none";
   }
 });
+function saveOrderToFirebase(orderData) {
+  const ordersRef = firebase.database().ref('orders');
+  const newOrderRef = ordersRef.push();
+  newOrderRef.set(orderData)
+    .then(() => {
+      console.log("✅ Order saved to Firebase Database");
+    })
+    .catch((error) => {
+      console.error("❌ Error saving order to Firebase:", error);
+    });
+}
