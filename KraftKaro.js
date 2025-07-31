@@ -147,7 +147,7 @@ function getNextOrderId() {
       const orderId = `#kraft_${paddedId}`;
 
       const options = {
-        key: "rzp_test_bOga6Io4983DLQ",
+        key: "rzp_live_YY9Xja0VlwtIbI",
         amount: totalCost * 100,
         currency: "INR",
         name: "KraftKaro",
