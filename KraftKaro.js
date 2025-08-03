@@ -173,37 +173,7 @@ function getNextOrderId() {
           };
 
           saveOrderToFirebase(orderData);
-console.log("📧 Sending email to Customer...");
-emailjs.send("service_v5t31vd", "template_71mxrug", {
-  customer_name: fullName,
-  email: email,
-  order: orderId,
-  total: totalCost
-})
-.then((res) => {
-  console.log("✅ Customer email sent", res.status, res.text);
-  console.log("📧 Sending email to Owner...");
-  return emailjs.send("service_v5t31vd", "template_71mxrug", {
-    customer_name: "Neha Sinha",
-    email: "nehasinha270207@gmail.com",
-    order: orderId,
-    total: totalCost
-  });
-})
-.then((res2) => {
-  console.log("✅ Owner email sent", res2.status, res2.text);
-  alert("📧 Emails sent & ✅ payment confirmed!");
-  cart = [];
-  totalCost = 0;
-  updateCart();
-  formContainer.remove();
-})
-.catch(err => {
-  console.error("❌ EmailJS Error:", err);
-  alert("Payment done, but email sending failed.");
-});
-
-         
+           window.location.href = "thankyou.html";
 
         },
         prefill: {
